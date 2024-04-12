@@ -18,7 +18,6 @@ public class InputController : MonoBehaviour
     public NavMeshAgent agent;
 
     private Animator agentAnimater;
-    private bool isWalking = false;
 
     RaycastHit rayHit;
     Vector2 keyVec;
@@ -26,6 +25,11 @@ public class InputController : MonoBehaviour
     private void Start()
     {
         agentAnimater = agent.GetComponent<Animator>();
+    }
+
+    void LateUpdate()
+    {
+        agentAnimater.SetFloat("Speed", agent.velocity.magnitude);
     }
 
     // Update is called once per frame
@@ -39,28 +43,13 @@ public class InputController : MonoBehaviour
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     if (Physics.Raycast(ray.origin, ray.direction, out rayHit))
                         agent.SetDestination(rayHit.point);
-
-                    isWalking = true;
-                    agentAnimater.SetBool("isWalking", true);
                 }
                 break;
 
             case InputMode.Keyboard:
                 Vector3 dirVec = agent.transform.right * keyVec.x + agent.transform.forward * keyVec.y;
                 agent.SetDestination(agent.transform.position + dirVec.normalized);
-
-                isWalking = true;
-                agentAnimater.SetBool("isWalking", true);
                 break;
-        }
-
-        if (isWalking)
-        {
-            if (Vector3.Distance(agent.transform.position, agent.destination) < 0.1f)
-            {
-                isWalking = false;
-                agentAnimater.SetBool("isWalking", false);
-            }
         }
     }
 
