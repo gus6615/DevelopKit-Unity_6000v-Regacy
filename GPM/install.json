@@ -11,6 +11,13 @@
             "dependency": [
                 "Common"
             ]
+        },
+        {
+            "name": "Adapter",
+            "version": "2.0.1",
+            "dependency": [
+                "Common"
+            ]
         }
     ]
 }
