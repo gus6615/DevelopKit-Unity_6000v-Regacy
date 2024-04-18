@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.nkstudio.scenereference": {
+      "version": "https://github.com/NK-Studio/SceneReference.git#UPM",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "011ecd3d6f5d6c0891b92ba7dd1a3efa5bfbb479"
+    },
     "com.unity.2d.animation": {
       "version": "9.0.4",
       "depth": 0,

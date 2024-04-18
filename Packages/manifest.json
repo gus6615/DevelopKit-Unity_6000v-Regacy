@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.nkstudio.scenereference": "https://github.com/NK-Studio/SceneReference.git#UPM",
     "com.unity.2d.animation": "9.0.4",
     "com.unity.ai.navigation": "1.1.5",
     "com.unity.cinemachine": "2.9.7",

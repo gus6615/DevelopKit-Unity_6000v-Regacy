@@ -1,0 +1,25 @@
+{
+    "name": "Unity.SceneSystem.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:1fccaaf8fdf894b1db5e4c040178ba9f",
+        "GUID:09bad806721a64355b6b12c680073a87"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.nkstudio.scenereference",
+            "expression": "",
+            "define": "USE_SCENE_REFERENCE"
+        }
+    ],
+    "noEngineReferences": false
+}
