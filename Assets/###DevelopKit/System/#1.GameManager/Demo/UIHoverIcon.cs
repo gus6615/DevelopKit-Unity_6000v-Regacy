@@ -9,7 +9,7 @@ public class UIHoverIcon : MonoBehaviour, IPointerEnterHandler, IPointerDownHand
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        hover = GameManager.Instance.UI.ShowHover<UIHoverTest>("UIHoverTest");
+        hover = GameManager.UI.ShowHover<UIHoverTest>("UIHoverTest");
         hover.SetAnchoredPosition(eventData.position);
     }
 
@@ -21,7 +21,7 @@ public class UIHoverIcon : MonoBehaviour, IPointerEnterHandler, IPointerDownHand
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        GameManager.Instance.UI.CloseHover();
+        GameManager.UI.CloseHover();
         hover = null;
     }
 }

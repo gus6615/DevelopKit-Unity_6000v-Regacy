@@ -21,8 +21,8 @@ public class UIPopupTest : UI_Popup
 
     public void OnClosePopup()
     {
-        GameManager.Instance.UI.ClosePopup();
-        GMTest2.currentPopupID--;
-        GMTest2.currentPopupPos -= MoveVec;
+        GameManager.UI.ClosePopup();
+        UISceneTest.currentPopupID--;
+        UISceneTest.currentPopupPos -= MoveVec;
     }
 }

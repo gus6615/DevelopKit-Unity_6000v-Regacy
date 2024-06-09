@@ -45,7 +45,7 @@ public class UIController : MonoBehaviour
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
 
-        GameObject go = GameManager.Instance.Resource.Instantiate($"UI/Popup/{name}", Root);
+        GameObject go = GameManager.Resource.Instantiate($"UI/Popup/{name}", Root);
         SetCanvas(go);
         T popup = go.GetOrAddComponent<T>();
         popupStack.Push(popup);
@@ -76,7 +76,7 @@ public class UIController : MonoBehaviour
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
 
-        GameObject go = GameManager.Instance.Resource.Instantiate($"UI/Hover/{name}", Root);
+        GameObject go = GameManager.Resource.Instantiate($"UI/Hover/{name}", Root);
         SetCanvas(go);
         T hoverLoaded = go.GetOrAddComponent<T>();
         hover = hoverLoaded;
@@ -88,7 +88,7 @@ public class UIController : MonoBehaviour
         if (hover == null)
             return;
 
-        GameManager.Instance.Resource.Destroy(hover.gameObject);
+        GameManager.Resource.Destroy(hover.gameObject);
         hover = null;
         sortingOrder--;
     }

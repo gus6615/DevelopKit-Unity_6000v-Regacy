@@ -21,7 +21,7 @@ public class SoundController : MonoBehaviour
         string[] soundNames = System.Enum.GetNames(typeof(SoundType));
         _audioSources = new AudioSource[soundNames.Length];
         _audioClipDic = new Dictionary<string, AudioClip>();
-        _audioMixer = GameManager.Instance.Resource.Load<AudioMixer>(_audioMixerPath);
+        _audioMixer = GameManager.Resource.Load<AudioMixer>(_audioMixerPath);
 
         for (int i = 0; i < soundNames.Length; i++)
         {
@@ -83,7 +83,7 @@ public class SoundController : MonoBehaviour
 
         if (_audioClipDic.TryGetValue(path, out audioClip) == false)
         {
-            audioClip = GameManager.Instance.Resource.Load<AudioClip>(path);
+            audioClip = GameManager.Resource.Load<AudioClip>(path);
             if (audioClip == null)
             {
                 Debug.Log($"Failed to GetOrAddAudioClip : {path}");

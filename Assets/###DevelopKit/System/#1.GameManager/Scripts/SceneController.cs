@@ -29,7 +29,7 @@ public class SceneController : MonoBehaviour
     public void Init()
     {
         sceneDatas = new List<SceneData>();
-        sceneDatas.AddRange(GameManager.Instance.Resource.LoadAll<SceneData>("SO/SceneData"));
+        sceneDatas.AddRange(GameManager.Resource.LoadAll<SceneData>("SO/SceneData"));
 
         // Scene 전환 이벤트 설정 가능
         SetLoadCallback(SceneType.MainScene, () => { Debug.Log("MainScene is loaded."); });

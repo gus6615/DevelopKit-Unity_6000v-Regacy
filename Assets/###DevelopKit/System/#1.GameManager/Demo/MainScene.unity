@@ -945,7 +945,7 @@ GameObject:
   - component: {fileID: 433035115}
   - component: {fileID: 433035116}
   m_Layer: 0
-  m_Name: GMTest
+  m_Name: MainSceneTestManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3585,6 +3585,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a3ef926e0fdaa044b03ea1ac140397a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hover: {fileID: 0}
 --- !u!1 &1516501602
 GameObject:
   m_ObjectHideFlags: 0
@@ -5055,7 +5056,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 454236101}
   - {fileID: 1068180986}
-  - {fileID: 199620938}
-  - {fileID: 433035115}
   - {fileID: 1578190566}
   - {fileID: 641925038}
+  - {fileID: 199620938}
+  - {fileID: 433035115}
