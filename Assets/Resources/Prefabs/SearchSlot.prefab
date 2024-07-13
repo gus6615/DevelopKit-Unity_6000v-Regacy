@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2988466610222454242}
   - component: {fileID: 1910113668713202187}
   m_Layer: 5
-  m_Name: BFS_Slot
+  m_Name: SearchSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

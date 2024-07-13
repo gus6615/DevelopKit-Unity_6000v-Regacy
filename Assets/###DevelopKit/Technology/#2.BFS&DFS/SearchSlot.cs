@@ -11,7 +11,7 @@ public enum SlotType
     Wall
 }
 
-public class BFS_Slot : MonoBehaviour
+public class SearchSlot : MonoBehaviour
 {
     private readonly Color wallColor = Color.black;
     private readonly Color unVisitedColor = Color.white;

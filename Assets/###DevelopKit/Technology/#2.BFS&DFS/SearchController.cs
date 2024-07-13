@@ -4,10 +4,17 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BFSController : MonoBehaviour
+public enum SearchType
+{
+    BFS,
+    DFS,
+}
+
+public class SearchController : MonoBehaviour
 {
     [SerializeField] private GridLayoutGroup grid;
     [SerializeField] private TMP_Text infoText;
+    [SerializeField] private SearchType searchType;
 
     private readonly WaitForSeconds BFSWFS = new WaitForSeconds(0.1f);
     private readonly Vector2Int[] directions =
@@ -18,7 +25,7 @@ public class BFSController : MonoBehaviour
         new Vector2Int (-1, 0)
     };
 
-    private BFS_Slot[][] slotContainer;
+    private SearchSlot[][] slotContainer;
     private int slotSize;
     private int col, row;
     private int count;
@@ -26,7 +33,7 @@ public class BFSController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var slots = grid.GetComponentsInChildren<BFS_Slot>();
+        var slots = grid.GetComponentsInChildren<SearchSlot>();
         foreach (var slot in slots)
             GameManager.Resource.Destroy(slot.gameObject);
 
@@ -34,23 +41,27 @@ public class BFSController : MonoBehaviour
         col = 1800 / slotSize;
         row = 800 / slotSize;
         count = 0;
+        infoText.SetText(string.Empty);
 
-        slotContainer = new BFS_Slot[row][];
+        slotContainer = new SearchSlot[row][];
         for (int i = 0; i < row; i++)
-            slotContainer[i] = new BFS_Slot[col];
+            slotContainer[i] = new SearchSlot[col];
 
         for (int i = 0; i < row; i++)
         {
             for (int j = 0; j < col; j++)
             {
-                BFS_Slot slot = GameManager.Resource.Instantiate("BFS_Slot", grid.transform).GetComponent<BFS_Slot>();
+                SearchSlot slot = GameManager.Resource.Instantiate("SearchSlot", grid.transform).GetComponent<SearchSlot>();
                 slot.Init((SlotType)data_00[i][j]);
                 slotContainer[i][j] = slot;
             }
         }
 
-        infoText.SetText(string.Empty);
-        StartCoroutine(BFS(new Vector2Int(0, 0)));
+        switch (searchType)
+        {
+            case SearchType.BFS: StartCoroutine(BFS(new Vector2Int(0, 0))); break;
+            case SearchType.DFS: DFS(new Vector2Int(0, 0)); break;
+        }
     }
 
     IEnumerator BFS(Vector2Int point)
@@ -58,7 +69,7 @@ public class BFSController : MonoBehaviour
         if (IsValidPoint(point) == false)
             yield break;
 
-        BFS_Slot slot = slotContainer[point.y][point.x];
+        SearchSlot slot = slotContainer[point.y][point.x];
 
         if (IsValidSlot(slot) == false)
             yield break;
@@ -80,6 +91,31 @@ public class BFSController : MonoBehaviour
         }
     }
 
+    public void DFS(Vector2Int point)
+    {
+        if (IsValidPoint(point) == false)
+            return;
+
+        SearchSlot slot = slotContainer[point.y][point.x];
+
+        if (IsValidSlot(slot) == false)
+            return;
+
+        count++;
+        bool isEnd = slot.Visit();
+
+        if (isEnd == true)
+            SetGameEnd();
+        else
+        {
+            for (int i = 0; i < directions.Length; i++)
+            {
+                Vector2Int newPos = point + directions[i];
+                DFS(newPos);
+            }
+        }
+    }
+
     private bool IsValidPoint(Vector2Int point)
     {
         if (point.y < 0 || point.y >= row || point.x < 0 || point.x >= col)
@@ -87,7 +123,7 @@ public class BFSController : MonoBehaviour
         return true;
     }
 
-    private bool IsValidSlot(BFS_Slot slot)
+    private bool IsValidSlot(SearchSlot slot)
     {
         if (slot.IsVisited || slot.SlotType == SlotType.Wall)
             return false;
